@@ -1,38 +1,39 @@
+import units.Grams;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class Ingredients {
-    public HashMap<String, String> readIngredientsFromFile() {
-        HashMap<String, String> ingredients = new HashMap<>();
+    public ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-        try {
-            Path source = Paths.get(this.getClass().getResource("/")
-                    .getPath()
-                    .replace("/C:","C:")
-                    .replace("CookingApp", "Resources"));
-//            System.out.println(source);
-            Path newFilePath = Paths.get(String.valueOf(source.toAbsolutePath()));
-
-            if(!Files.exists(newFilePath)) Files.createDirectory(newFilePath);
-//            File file = new File(newFilePath + "\\Ingredients.txt");
-//            System.out.println(newFilePath);
-//            if (file.createNewFile()) System.out.println("Created Ingredients.txt in " + newFilePath);;
-//        } catch (IOException e) {
-        } catch (Exception e) {
-            System.out.println("Hmm, it seems that I ran into an error.\n" + e);
-        }
-
-
-
-        return ingredients;
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
     }
 
-    public void addIngredientToFile() {
-        // Append ingredient to file
+    public void removeIngredient(Ingredient ingredient) {
+        this.ingredients.remove(ingredient);
+    }
+
+    public Ingredient findIngredientByName(String name) {
+        return this.ingredients.stream().filter(ingredient -> ingredient.getName().equals(name)).findFirst().orElse(null);
+    }
+
+//    public static Ingredients loadIngredientsFromFile(String file) {
+//        var ingredients = new Ingredients();
+//
+//        // Get stuff loaded and saved
+//        // Serialize (serialisation) arrayList
+//
+//        return ;
+//    }
+
+    public static void saveIngredientsToFile(Ingredients ingredients, String file) {
+        // Reverse from loadIngredientsFromFile() => Save to File
     }
 }

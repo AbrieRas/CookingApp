@@ -6,11 +6,13 @@ public class Chef {
     public HashMap<String, String> currentIngredients = new HashMap<>();
     private final Ingredients ingredients = new Ingredients();
 
+    // Salt => 5mg
+    // Milk => 5ml
     public HashMap<String, String> getIngredients() {
         HashMap<String, String> foundIngredients = new HashMap<>();
         // Pull ingredients from file
         // Assign pulled ingredients to
-        ingredients.readIngredientsFromFile();
+//        ingredients.readIngredientsFromFile();
 
         return foundIngredients;
     }
